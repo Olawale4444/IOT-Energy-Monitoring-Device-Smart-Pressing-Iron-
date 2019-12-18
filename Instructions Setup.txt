@@ -1,0 +1,70 @@
+Step 1
+INSTALLING THE REQUIRED LIBRARIES FOR THE ARDUINO IDE.
+
+"The EmonLib, LCD and Wire.h Libraries are required on the Arduino IDE for this project".
+
+-From the Arduino IDE Home Page, Navigate to Sketch, Include Library, and then Manage Libraries.
+- Search for EmonLib and click install.
+-Navigate to sketch again, Click on "Include Library" and then "Add .zip Library".
+- Select the "LCD Library" in the "Library" folder in this document.
+- Repeat the above process for the "Wire.h Library"
+
+==========================================================================================
+
+Step 2
+UPLOADING THE CODE TO THE MICROCONTROLLER
+
+- In this folder, Navigate to "SmartPressingIron.ino" from  the "SmartPressingIron Folder"
+- Connect the Arduino Uno to your Computer, Launch the "SmartPressingIron.ino" file and upload the code 
+to the Arduino Uno Microcontroller.
+
+
+==========================================================================================
+
+
+Step 3
+SETTING UP AND CONNECTING YOUR CIRCUIT TO THE PRESSING IRON
+
+-The "ZMPT 101b" voltage sensor will be connected to the pressing iron via extra cables,
+ which will be connected as shown in the "ZMPT_Voltage Sensor" diagram in the photos folder.
+-  The Voltage Sensor will also be connected to the Arduino Uno Microcontroller circuit as shown 
+  in the "ZMPT_Voltage Sensor" pinout diagram in the photos folder.
+- As for the Current sensor, It is the "SCT_Current Sensor" image in the photos folder.
+- The silver end of the black cable will be cut and the two balck and red cables will then be 
+  connected to resisitors and to the Arduino Uno Microcontroller as shown in the "SCT_Current Sensor_Circuit.jpeg"
+   pinout diagram.
+
+
+==========================================================================================
+
+Step 4
+SETTING UP THE WI-FI MODULE
+
+- The Arduino Uno should be connected to the Wi-Fi Module to enable connection and data transfer over the internet.
+-  The Pinout diagram named "Wi-Fi Module (ESP8266)" should be followed in the connection to the Arduino Uno.
+
+
+==========================================================================================
+
+
+Step 5
+SETTING UP THE INTERNET CONNECTION
+
+- In Order to send data over the internet, A Mobile Wi-Fi Hotspot should be switched on, and the "mySSID"
+  string in the code (Line 15) should be replaced with the SSID of the Wi-Fi Hotspot.
+-  As for the password also, one should replace the "myPWD" string on (Line 16) of the code with the 
+  Password of the Mobile hotspot.
+
+
+==========================================================================================
+
+Step 6.
+CROSS-CHECKING AND SENDING THE DATA READINGS TO THE CLOUD (THINGSPEAK)
+
+- The various pinout diagrams should be cross checked and then the Mobile hotspot should be 
+  switched on.
+- The User should Sign Up to Thingspeak.com and create an account.
+-  After this, the user should click on "Create a channel".
+- After creating a channel, the user should click on "API Keys".
+- The user should then copy this API Key, and replace it with the "myAPI" string on (Line 17) of the Source code
+- If all the connections are correct, The Readings from the arduino Uno should display 
