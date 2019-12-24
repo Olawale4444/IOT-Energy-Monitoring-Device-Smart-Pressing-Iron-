@@ -39,7 +39,7 @@ void setup()
   emon1.voltage(A0, VOLT_CAL, 1.7);
   emon1.current(A1, CURRENT_CAL);
 
-  //Set up wifi
+  //Setting up the ESP8266 wifi
   espData("AT+RST", 1000, DEBUG);                      //Resets the ESP8266 module
   espData("AT+CWMODE=1", 1000, DEBUG);                 //Sets up the ESP mode to station mode
   espData("AT+CWJAP=\""+ mySSID +"\",\""+ myPWD +"\"", 1000, DEBUG);   //Connects to the WiFi network
