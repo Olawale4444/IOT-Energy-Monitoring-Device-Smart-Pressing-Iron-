@@ -1,4 +1,4 @@
-//
+//Libraries
 #include <SoftwareSerial.h>
 #include "EmonLib.h"
 #define DEBUG true
@@ -8,6 +8,7 @@
 //I2C pins declaration for the LCD
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); 
 
+//Constant Values for the Voltage and Current Sensors obtained manually.
 #define VOLT_CAL 620.7
 #define CURRENT_CAL 111.1
 
@@ -50,17 +51,21 @@ void setup()
   {
     emon1.calcVI(20,5000); 
     
+    
+      //Assigns the Variable currentDraw to the float output which will be gotten 
+      //from the Sampling of the waveform via the Open Energy Monitor EmonLib Library 
   float currentDraw = emon1.Irms;
   float voltageDraw = emon1.Vrms;
 
     if(millis() - timeout > 4000) //send data every one minutes
     {
-
        emon1.calcVI(20,5000); 
     
+      //Assigns the Variable currentDraw to the float output which will be gotten 
+      //from the Sampling of the waveform via the Open Energy Monitor EmonLib Library 
   float currentDraw = emon1.Irms;
   float voltageDraw = emon1.Vrms;
-
+    //Sends a display output to the Arduino IDE Serial Monitor
     Serial.print("Voltage : ");
     Serial.println(voltageDraw);
     
@@ -78,6 +83,8 @@ void setup()
       current = currentDraw;
       power = voltageDraw * currentDraw;
           
+    // Sets up, and Sends an display output to the Connected LCD
+      
     lcd.setCursor(0,0); //Defining positon to write from first row,first column .
     lcd.print("Olowonyo Olawale"); //You can write 16 Characters per line .
     delay(1000);//Delay used to give a dynamic effect
@@ -87,12 +94,11 @@ void setup()
 
     lcd.clear();//Clean the screen
     lcd.setCursor(0,0); 
-    
+      
     lcd.print("Voltage(V) ");
     lcd.setCursor(0,1);
     lcd.print(voltage);
     delay(4000); 
-    ////
 
     lcd.clear();//Clean the screen
     lcd.setCursor(0,0); 
@@ -110,7 +116,7 @@ void setup()
     lcd.print(power);
     delay(4000); 
       
-    
+    //Communicates with the Thingspeak API by sending the API KEY and other details.
     String sendData = "GET https://api.thingspeak.com/update?api_key="+ myAPI + myFIELD +"="+String(current)+ myFIELD1 +"="+String(voltage)+ myFIELD2 +"="+String(power);
     espData("AT+CIPMUX=1", 1000, DEBUG);       //Allow multiple connections
     espData("AT+CIPSTART=0,\"TCP\",\""+ myHOST +"\","+ myPORT, 1000, false);
